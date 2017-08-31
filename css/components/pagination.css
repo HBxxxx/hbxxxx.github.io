@@ -12,7 +12,7 @@
 }
 .pagination .pagination-prev,
 .pagination .pagination-next {
-  color: #00007b;
+  color: #81b685;
   font-size: 1.6rem;
   border: 1px solid #e0e0e0;
   line-height: 30px;
@@ -25,6 +25,6 @@
 .pagination .pagination-prev:hover,
 .pagination .pagination-next:hover {
   color: #fff;
-  background-color: #00007b;
-  border-color: #00007b;
+  background-color: #81b685;
+  border-color: #81b685;
 }
