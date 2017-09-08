@@ -800,7 +800,7 @@ article .categories-cloud {
   width: 100%;
   margin: 8rem 0;
   text-align: center;
-  line-height: 2rem;
+  line-height: 1.5rem;
 }
 article .categories-cloud > spannot(last-child) {
   margin-right: 3rem;
