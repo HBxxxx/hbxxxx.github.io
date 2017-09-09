@@ -2,7 +2,7 @@ article .categories-cloud {
   width: 100%;
   margin: 8rem 0;
   text-align: center;
-  line-height: 1.5rem;
+  line-height: 2rem;
 }
 article .categories-cloud > spannot(last-child) {
   margin-right: 3rem;
@@ -16,7 +16,7 @@ article .categories-cloud > span > span {
 }
 article .archive-categories,
 article .archive-categories > spannot(last-child) {
-  margin-right: 3rem;
+  margin-right: 30rem;
 }
 article .archive-categories > span {
   display: inline-block;
