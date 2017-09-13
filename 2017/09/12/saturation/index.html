@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>对晶体管饱和区的理解 | 谷木 | 文不能测字 武不能防身</title>
+
+  
+  <meta name="author" content="谷木">
+  
+
+  
+  <meta name="description" content="由于对晶体管饱和区的理解比较模糊，我便参阅了一些书籍和资料。现借这篇文章做一次梳理。如有错误和不妥之处，欢迎批评指正。">
+  
+
+  
+  
+  <meta name="keywords" content="学习笔记,模拟电子技术,饱和区">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="对晶体管饱和区的理解"/>
+
+  <meta property="og:site_name" content="谷木"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="谷木" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">谷木</a>
+    </h1>
+    <p class="site-description">文不能测字 武不能防身</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>对晶体管饱和区的理解</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/09/12/saturation/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-12T04:39:44.000Z">
+          2017-09-12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>由于对晶体管饱和区的理解比较模糊，我便参阅了一些书籍和资料。现借这篇文章做一次梳理。如有错误和不妥之处，欢迎批评指正。<br><a id="more"></a></p>
+<h3 id="饱和区"><a href="#饱和区" class="headerlink" title="饱和区"></a>饱和区</h3><p><img src="http://ovye5j6qa.bkt.clouddn.com/outline.png" alt="outline"></p>
+<ol>
+<li>范围：一般把$U_{CE}$很小、靠近纵坐标附近、各条输出特性曲线上升的区域称为饱和区。</li>
+<li>特征：①$I_C$随着$U_{CE}$快速上升。当三极管的集电结电流$I_C$增大到一定程度时，再增大$I_B$，$I_C$也不会增大，超出了放大区，进入了饱和区。</li>
+<li>条件：发射结和集电结均正向偏置。</li>
+</ol>
+<p>理解饱和区，在于理解特性中提到的两点。第一点可以从输出特性曲线中直观得出。相对而言，第二点就较难理解。第二点用等式来描述就是：起初，三极管工作在放大区，$\frac{\Delta I_C}{\Delta I_B}=β$满足，当进入饱和区时，等式不满足，$\frac{\Delta I_C}{\Delta I_B}&lt;&lt;β$。</p>
+<p>从②的描述中可以看出，饱和区的判断涉及$I_B$和$I_C$两个量。<br>$I_B$与输入回路相关，$I_C$与输出回路相关。可见两个回路的变化，都将影响三极管的状态。</p>
+<h4 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h4><p>放大电路中，交流信号总是叠加在直流量上。显然，直流是基础。<br>考虑到晶体管的实际工作情况，输入和输出回路中都会有一定的负载，绘出直流通路图，如图。<br><img src="http://ovye5j6qa.bkt.clouddn.com/DC.png" alt="DC"><br>首先固定输出回路的参数设定，即$V_{CC}$和$R_c$的值。在输出回路中可得方程：$V_{CC}=I_CR_+U_{CE}$，整理得$I_C=-\frac{1}{R_c}U_{CE}+\frac{1}{R_{c}}V_{CC}$<br>因为直线的斜率与负载电阻$R_c$有关，故称之为输出回路直流负载曲线。绘制伏安特性曲线如下。<br><img src="http://ovye5j6qa.bkt.clouddn.com/load.png" alt="load"><br>在输入回路中，通过调节$R_b$和$V_{CC}$，达到调节$I_B$的目的。$I_B$变化，导致相应的输出变化。一个$I_B$对应一条输出特性曲线。绘制出一簇输出特性曲线。<br><img src="http://ovye5j6qa.bkt.clouddn.com/shuchu.png" alt="shuchu"><br>叠加在输出回路直流负载曲线上，得到相应交点，如图。<br><img src="http://ovye5j6qa.bkt.clouddn.com/jiaodian.png" alt="jiaodian"><br>图中可以看出，起初，随着$I_B$的增大，$I_C$等间距增大，满足$\frac{\Delta I_C}{\Delta I_B}=β$，但当$I_B$增大到一定值时（如从$I_B=80$到$I_B=100$），$I_B$与输出特性曲线的交点基本重合，$I_C$不再增加，即$\frac{\Delta I_C}{\Delta I_B}&lt;&lt;β$。</p>
+<h4 id="载流子视角"><a href="#载流子视角" class="headerlink" title="载流子视角"></a>载流子视角</h4><p>饱和，一方面可以理解成$I_C$的不再变化，另一方面，也可以理解成基区中载流子的饱和。<br>在<a href="a">对双极性晶体管的理解</a>一文中提到，$U_{CE}$的作用是将从发射区流入基区的载流子拉向集电区。<br>结合直流通路图分析：<br><img src="http://ovye5j6qa.bkt.clouddn.com/DC.png" alt="load"><br>起初，$I_C$较小，在$R_c$处的电压降较小，$U_{CE}$从$V_{CC}$处分得的电压较大。$U_{CE}$较大时，有足够的电压将载流子从基区拉向集电区，因此在基区滞留的电子较少。<br>随着$I_B$增大，$I_C$也不断增大，$R_c$处的电压降增大，$U_{CE}$不断减小，从基区拉载流子到集电区的能力不断减小。当$I_C$增大到一定值时，使$U_{CE}=U_{BE}$，即$U_{BC}=0$，晶体管处于临界饱和（或临界放大）状态。此时，有大量载流子滞留在基区中，所以称为基区载流子饱和。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/学习笔记/">学习笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/模拟电子技术/">模拟电子技术</a><a href="/tags/饱和区/">饱和区</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+	<!-- 来必力City版安装代码 -->
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDc1OC83MzEw">
+	<script type="text/javascript">
+   		(function(d, s) {
+    		var j, e = d.getElementsByTagName(s)[0];
+
+       		if (typeof LivereTower === 'function') { return; }
+
+       		j = d.createElement(s);
+       		j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       		j.async = true;
+
+       		e.parentNode.insertBefore(j, e);
+   		})(document, 'script');
+	</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+	</div>
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 谷木
+    
+  </p>
+</footer>
+    
+  </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
