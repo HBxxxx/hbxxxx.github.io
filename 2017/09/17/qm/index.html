@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>奎因-麦克拉斯基算法（Python实现） | 谷木 | 文不能测字 武不能防身</title>
+
+  
+  <meta name="author" content="谷木">
+  
+
+  
+  <meta name="description" content="奎恩-麦克拉斯基算法由奎恩（W.V.Quine）和麦克拉斯基（E.J.McCluskey）提出，利用列表方式进行逻辑函数的化简，简称Q-M算法。">
+  
+
+  
+  
+  <meta name="keywords" content="QM算法,数字电子技术,逻辑函数,Python">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="奎因-麦克拉斯基算法（Python实现）"/>
+
+  <meta property="og:site_name" content="谷木"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="谷木" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">谷木</a>
+    </h1>
+    <p class="site-description">文不能测字 武不能防身</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>奎因-麦克拉斯基算法（Python实现）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/09/17/qm/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-17T01:51:56.000Z">
+          2017-09-17
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>奎恩-麦克拉斯基算法由奎恩（W.V.Quine）和麦克拉斯基（E.J.McCluskey）提出，利用列表方式进行逻辑函数的化简，简称Q-M算法。<br>
+<a id="more"></a></p>
+<h3 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h3>
+<p>通过合并最小项，消去多余因子，进而求得逻辑函数的最简与或式。</p>
+<h3 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h3>
+<ol>
+<li>寻找出函数中所有质蕴涵项</li>
+<li>利用所得质蕴涵项，绘制列表，寻找出必要质蕴涵项</li>
+<li>当必要质蕴涵项仍不足以覆盖最小项时，从剩余质蕴涵项中寻找最小覆盖。</li>
+</ol>
+<h3 id="与其他化简法的比较"><a class="markdownIt-Anchor" href="#与其他化简法的比较"></a> 与其他化简法的比较</h3>
+<p>卡诺图化简法具有直观、简单的优点，但在函数的输入逻辑变量较多时，卡诺图化简法便会失去直观的缺点。此外，卡诺图化简法在许多情况下，要凭借设计者的经验完成化简，不利于借助计算机完成化简工作。</p>
+<p>公式化简法的使用虽然不收输入变量数目的影响，但由于化简过程没有固定的、通用的步骤可寻，所以同样不适用于计算机辅助化简。</p>
+<p>Q-M算法利用列表方式进行化简，遵循一定的规则与步骤，较好地克服了公式化简法和卡诺图化简法的局限性，适用于编制计算机辅助化简程序。</p>
+<p>但是，随着输入变量数目的增加，迭代比较次数会极大增加，影响化简速度。此时，函数化简需要采取启发式方法。</p>
+<h3 id="示例摘自数字电子技术基础阎石著"><a class="markdownIt-Anchor" href="#示例摘自数字电子技术基础阎石著"></a> 示例（摘自《数字电子技术基础（阎石著）》）</h3>
+<p>假定需要化简的无变量逻辑函数为：<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/2.6.3.png" alt="2.6.3"></p>
+<ol>
+<li>
+<p><strong>化为最小项之和</strong><br>
+将函数化为最小项之和形式，列出最小项编码表。将式（2.6.3）化为最小项之和形式后得到<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/2.6.4.png" alt="2.6.4"><br>
+用1表示最小项中的原变量，用0表示最小项中的反变量，得到最小编码表。<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/table.png" alt="table"></p>
+</li>
+<li>
+<p><strong>按包含1的个数将最小项分组</strong><br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/table2.png" alt="table2"></p>
+</li>
+<li>
+<p><strong>合并相邻的最小项</strong><br>
+将表2.6.2中最左边一列里的每一组的，每一个最小项与相邻组里所有的最小项逐一比较，若仅有一个因子不同，则定可合并，并消去不同的因子。消去的因子用“——”号表示，将合并后的结果列于表2.6.2的第二列中。同时，在第一列中可以合并的最小项右边标以“√”号。<br>
+按照同样的方法再将第二列中的乘积项合并，合并后的结果写在第三列中。如此进行下去，直到不能再合并为止。</p>
+</li>
+<li>
+<p><strong>选择最小的乘积项</strong>。<br>
+只要将表2.6.2中合并过程中没有用过的乘积项相加，自然就包含了函数Y的全部最小项，故得质蕴涵项：<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/2.6.5.png" alt="2.6.5"><br>
+然而上式不一定是最简的与或表达式。为了进一步将式（2.6.5）化简，将P1-P8包含的最小项列成表2.6.3。因为表中带圆圈的最小项仅包含在一个乘积项中，所以化简结果中一定包含这些乘积项，即P1、P2、P3、P7和P8（称为必要质蕴涵项）。<br>
+这五个必要质蕴涵项之和，已包含了除m14和m15以外所有Y的最小项。<br>
+即P1+P2+P3+P7+P8=m0+m2+m3+m8+m10+m22+m24+m27+m31(缺少m14和m15)。<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/table3.png" alt="table3"><br>
+剩下的问题就是要确定化简结果中是否应该包含P4、P5和P6了。为此，将表2.6.3中有关P4、P5和P6的部分化简为成表2.6.4的形式。<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/table4.png" alt="table4"><br>
+由表2.6.4中可以看出，P4行所有的1和P6行所有的1皆与P5中的1重叠，亦即P5中的最小项包含了P4和P6的所有最小项，故可将P4和P6两行删除。因此，可将式（2.6.5）中的P4和P6两项去掉，从而得到最后的化简结果：<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/2.6.6.png" alt="2.6.6"></p>
+</li>
+</ol>
+<h3 id="用图表示最小覆盖的求解"><a class="markdownIt-Anchor" href="#用图表示最小覆盖的求解"></a> 用图表示最小覆盖的求解</h3>
+<p>设G(U,V;E)为二分图。其中质蕴涵作为U的顶点集，最小项作为V的顶点集。若质蕴涵项u包含最小项v，则表示两者相关联，有e_uv∈E，建立质蕴涵项和最小关联图。（以上述示例为例）<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/graph1.png" alt="graph1"><br>
+d(u),d(v)分别表示顶点u、v的度。<br>
+最小覆盖就是找出集合U中能够包含集合V所有顶点的最少顶点集合U’。</p>
+<h4 id="采用启发式方法"><a class="markdownIt-Anchor" href="#采用启发式方法"></a> 采用启发式方法</h4>
+<ol>
+<li>找出V集合中，d(v)=1的顶点v，找到与顶点v相关联的顶点u<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/graph2.png" alt="graph2"></li>
+<li>将u从集合U中移出，移入集合U’中。同时，并将与顶点u相关的所有v移出集合V。(以最小项0为例，与0相关的质蕴涵项为0-0-0，将此质蕴涵项移出U，移入集合U’，同时将与0-0-0相关的最小项顶点0、2、8、10移出集合V)<br>
+结果如下：<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/graph3.png" alt="graph3"></li>
+<li>若集合V非空，则在集合U中寻找d(u)最大的顶点u，将顶点u移出集合U，移入集合U’。同时将与此顶点u相关的顶点v移出集合V。重复上述步骤，直到集合V为空。此时，集合U’即所求解的最小覆盖。<br>
+<img src="http://ovye5j6qa.bkt.clouddn.com/graph4.png" alt="graph4"></li>
+</ol>
+<p>参考文献：<a href="http://www.docin.com/p-475795684.html" target="_blank" rel="external">改进的Q-M逻辑函数化简方法</a></p>
+<h3 id="python实现"><a class="markdownIt-Anchor" href="#python实现"></a> Python实现</h3>
+<p>根据Q-M算法的步骤，我用Python编写了相应的程序。<br>
+附上源代码地址：<a href="https://github.com/HBxxxx/Quine-Mccluskey" target="_blank" rel="external">Quine–McCluskey_algorithm.py</a></p>
+<h3 id="一些qm算法在线网站"><a class="markdownIt-Anchor" href="#一些qm算法在线网站"></a> 一些QM算法在线网站</h3>
+<p><a href="http://quine-mccluskey-frederic-carpon-implementation.e-geii.eu/index.php" target="_blank" rel="external">quine-mccluskey-frederic-carpon-implementation</a><br>
+<a href="http://www.quinemccluskey.com/" target="_blank" rel="external">QuineMcCluskeySolver</a></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/学习笔记/">学习笔记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/QM算法/">QM算法</a><a href="/tags/数字电子技术/">数字电子技术</a><a href="/tags/逻辑函数/">逻辑函数</a><a href="/tags/Python/">Python</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+
+	<!-- 来必力City版安装代码 -->
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDc1OC83MzEw">
+	<script type="text/javascript">
+   		(function(d, s) {
+    		var j, e = d.getElementsByTagName(s)[0];
+
+       		if (typeof LivereTower === 'function') { return; }
+
+       		j = d.createElement(s);
+       		j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       		j.async = true;
+
+       		e.parentNode.insertBefore(j, e);
+   		})(document, 'script');
+	</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+	</div>
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 谷木
+    
+  </p>
+</footer>
+
+
+    
+  </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
